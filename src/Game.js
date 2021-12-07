@@ -107,8 +107,8 @@ class Food extends React.Component {
         this.setState({ markedFood: this.randomMax(max) })
     }
 
-    handleClick = () => {
-        console.log('yakaladın')
+    onHandleOnClick = (e) => {
+        return alert('You caught it!')
     }
 
     componentDidUpdate = (previousProps, previousState) => {
@@ -120,7 +120,7 @@ class Food extends React.Component {
         if(this.state.markedFood !== 0 && previousState.markedFood !== this.state.markedFood) {
             setTimeout(() => {
                 this.selectSomeFoods({horizontal: this.state.horizontal, vertical: this.state.vertical})
-            }, 10000)
+            }, 1000)
         }
     }
 
@@ -137,8 +137,9 @@ class Food extends React.Component {
     
                 } else {
 
-                    foodItems.push(<FoodRow key={countFoodKey} onClick={this.handleClick} 
-                        left={horizontalLoop*100-50} top={verticalLoop*100} color="red" />);
+                    foodItems.push(<div onClick={(e) => this.onHandleOnClick(e)}>
+                        <FoodRow key={countFoodKey} left={horizontalLoop*100-50} top={verticalLoop*100} color="red" />
+                    </div>);
     
                 }
 
